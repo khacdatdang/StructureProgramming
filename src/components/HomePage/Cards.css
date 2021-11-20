@@ -1,0 +1,276 @@
+.Container{
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    box-shadow: rgb(255, 255, 255);
+    object-fit: contain;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.cards-content1 {
+    height: 70vh;
+    width: 50%;
+    display: flex;
+    box-shadow:#ffffff;
+    object-fit: contain;  
+    margin-right: 100px;
+    margin-left: 50px;
+}
+
+.cards-image1 {
+    height: 70vh;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgb(255, 255, 255);
+    object-fit: contain; 
+    margin-left: 100px;  
+}
+
+.cards-content2 {
+    height: 70vh;
+    width: 50%;
+    display: flex;
+    box-shadow:#ffffff;
+    object-fit: contain;  
+    margin-left: 100px;
+}
+
+.cards-image2 {
+    height: 70vh;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgb(255, 255, 255);
+    object-fit: contain; 
+    margin-right: 100px;  
+}
+
+.cards-container {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow:rgb(255, 255, 255);
+    object-fit: contain;
+    border-bottom: 1px solid rgb(35, 87, 117);;
+}
+
+.cards-table {
+    height: 10vh;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow:rgb(255, 255, 255);
+    object-fit: contain;
+    float: left;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cards-container > h1 {
+    color: rgb(0, 0, 0);
+    line-height: 100px;
+    font-size: 70px;
+    margin-top: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.cards-container > h2 {
+    color: rgb(0, 0, 0);
+    line-height: 30px;
+    font-size: 20px;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cards-container > p {
+    margin-top: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.aim-title{
+    height: 70vh;
+    width: 15%;
+    flex-direction: column;
+    box-shadow: rgb(255, 255, 255);
+    margin-left: 100px;
+    font-size: 20px;  
+    
+}
+
+.aim-title h1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.object-aim{
+    height: 60vh;
+    width: 35%;
+    flex-direction: column;
+    box-shadow: rgb(255, 255, 255);
+    font-size: 30px;
+    margin-top: 100px;
+    margin-left: 20px;
+    
+}
+
+.object-image {
+    height: 40vh;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow:rgb(255, 255, 255);
+    object-fit: contain;
+}
+
+.object-title  {
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow:rgb(255, 255, 255);
+    border-left: 2px solid rgb(35, 87, 117);;
+    margin-top: 150px;
+}
+
+.object-title > p {
+    margin-left: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.object2-aim{
+    height: 60vh;
+    width: 35%;
+    flex-direction: column;
+    box-shadow: rgb(255, 255, 255);
+    font-size: 30px;
+    margin-top: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+@media screen and (max-width: 720px) {  
+    .Container{
+        margin-bottom: 10vh;
+        height: 80vh;
+    }
+    
+    .cards-content1 {
+        margin-right: 0px;
+        height: 95vh;
+        display: flex;
+    }
+    
+    .cards-image1 {
+        height: 95vh;
+        width: 40%;
+        display: flex;
+        margin-left: 0px;
+        
+    }
+
+    .cards-content2 {
+        margin-left: 0px;
+        height: 95vh;
+        display: flex;
+    }
+    
+    .cards-image2 {
+        height: 95vh;
+        width: 40%;
+        display: flex;
+        margin-right: 0px;
+        
+    }
+    
+    .cards-container {
+        height: 40vh;
+        display: flex;
+        object-fit: contain;
+        border-bottom: 1px solid;
+    }
+    
+    .cards-table {
+        height: 15vh;
+        float: left;
+        font-size: 15px;
+    }
+    
+    .cards-container > h1 {
+        line-height: 50px;
+        font-size: 40px;
+        margin-top: 20px;
+    }
+    
+    .cards-container > h2 {
+        line-height: 30px;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+    
+    .cards-container > p {
+        margin-top: 10px;
+        font-size: 30px;
+    }
+    
+    .aim-title{
+        height: 70vh;
+        flex-direction: column;
+        font-size: 15px; 
+        margin-left: 0px; 
+    }
+    
+    .object-aim{
+        height: 70vh;
+        flex-direction: column;
+        font-size: 30px;
+    }
+    
+    .object-image {
+        height: 40vh;
+        display: flex;
+        object-fit: contain;
+    }
+    
+    .object-title  {
+        height: 10vh;
+        display: flex;
+    }
+    
+    .object-title > p {
+        font-size: 20px;
+    }
+    
+    .object2-aim{
+        height: 70vh;
+        width: 35%;
+        flex-direction: column;
+        font-size: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+    
+}
+

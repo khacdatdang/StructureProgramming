@@ -1,0 +1,117 @@
+input:focus,
+button:focus {
+  outline: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 80px;
+  width: 500px;
+  margin-left: 520px;
+  margin-right: 520px;
+  margin-top: 100px;
+
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textInput {
+  padding-left: 10px;
+  height: 50px;
+  margin-bottom: 30px;
+  align-self: stretch;
+  font-family: Arial, sans-serif;
+  color: black;
+
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(0, 0, 0);
+  background-color: transparent;
+}
+
+.registerForm button {
+  color: rgb(35, 87, 117);
+  height: 60px;
+  padding: 15px 32px;
+  width: 300px;
+  border-radius: 40px;
+  text-align: center;
+  display: inline-block;
+  font-size: 22px;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  border: 1px solid rgb(35, 87, 117);
+}
+
+.textInput::placeholder {
+  color: rgb(177, 148, 148);
+  font-family: Arial, sans-serif;
+}
+
+.registerForm button:active {
+  transform: scale(0.9);
+  transition-duration: 100ms;
+}
+
+.registerTitle {
+  font-family: Arial, sans-serif;
+  color:black;
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+.touCheckboxLabel {
+  font-family: Arial, sans-serif;
+  vertical-align: bottom;
+  color: black;
+  font-weight: 600;
+  margin-left: 20px;
+}
+
+.touCheckbox {
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  margin-left: -20px;
+  margin-bottom: 12px;
+  background-color: green;
+}
+
+.disabled {
+  background-color: #fff;
+}
+
+.disabled:active {
+  transform: none !important;
+}
+
+.invisible {
+  display: none;
+}
+
+.errorMessage {
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+  padding: 0px 40px;
+  color: red;
+  font-weight: 200;
+  text-align: center;
+}
+
+@media screen and (max-width: 789px) {
+    .wrapper {
+        margin-left: 150px;
+    }
+}
