@@ -9,14 +9,16 @@ function EditProfile() {
     const [userInfo, setUserInfo] = useState({
         name : '',
         email : '',
-        tel : '',
+        phone : '',
         password : '',
-        address: ''
+        address: '',
+        gender :'',
+        birthday : ''
     })
-    const email = localStorage.getItem('auth_name')
     useEffect(() => {
-        axios.get(`/api/view-profile/${email}`).then(res => {
+        axios.get(`/api/user_info`).then(res => {
             if (res.data.status=== 200 ){
+                console.log(res.data.user);
                 setUserInfo(res.data.user)
             }
             else if (res.data.status === 404){
@@ -32,7 +34,7 @@ function EditProfile() {
     }
     const [errorList, setErrorList] = useState({
         name : '',
-        tel : '',
+        phone : '',
         address : ''
     })
     const updateProfile = e => {
@@ -40,10 +42,10 @@ function EditProfile() {
         const data = userInfo
         const email = localStorage.getItem("auth_name")
         
-        axios.post(`/axios/update-user/${email}`, data).then(res => {
+        axios.post(`/api/update-user/${email}`, data).then(res => {
             if (res.data.status === 200){
                 swal("Success",res.data.message, "success")
-                history.pushState('/userprofile')
+                history.push('/userprofile')
             }
             else if (res.data.status === 422)
             {
@@ -59,7 +61,6 @@ function EditProfile() {
     return (
         <div>
             <h1> Your Profile </h1>
-            
             <br/>
             <form className="row g-3" onSubmit = {updateProfile}>
             <div className="col-12">
@@ -68,7 +69,7 @@ function EditProfile() {
             </div>
             <div className="col-12">
                 <label className="form-label">Phone Number</label>
-                <input className="form-control" name = "tel" value = {userInfo.tel} onChange = {handleInput}/>
+                <input className="form-control" name = "phone" value = {userInfo.phone} onChange = {handleInput}/>
             </div>
             <div className="col-12">
                 <label className="form-label">Address</label>

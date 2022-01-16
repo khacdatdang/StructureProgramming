@@ -21,7 +21,7 @@ const LogIn = () => {
   const loginSubmit = e => {
     e.preventDefault()
     const data = {
-      email : loginInput.email,
+      username : loginInput.username,
       password : loginInput.password
     }
 
@@ -31,21 +31,15 @@ const LogIn = () => {
               if (res.data.status === 200)
               {
                   localStorage.setItem('auth_token', res.data.token);
-                  localStorage.setItem('auth_name', res.data.username);
+                  localStorage.setItem('user_id', res.data.user.id);
                   swal("Success", res.data.message, "success");
                   history.push('/userprofile')
               }
-              else if (res.data.status === 401)
-              {
-                  swal("Warning", res.data.message, "warning");
-              }
-              else
-              {
-                  setLoginInput({ ...loginInput, error_list : res.data.validation_errors});
-              }
-          });
-  });
-  }
+          }).catch(err => {
+            swal("Fail", "Wrong username or password", "error");
+          })
+      })
+    }
   return (
     <div className="wrapper">
       <h2 className="registerTitle">Sign In</h2>
@@ -53,9 +47,9 @@ const LogIn = () => {
         <input
           className="textInput"
           type="text"
-          name="email"
-          placeholder="Email"
-          value = {loginInput.email}
+          name="username"
+          placeholder="Username"
+          value = {loginInput.username}
           onChange = {handleInput}
         />
 

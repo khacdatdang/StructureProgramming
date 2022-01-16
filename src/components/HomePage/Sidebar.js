@@ -5,10 +5,10 @@ const Sidebar = () => {
     const history = useHistory()
     const logOutSubmit = (e) => {
         e.preventDefault()
-        axios.post(`/api/logout`).then(res => {
+        axios.get(`/api/logout`).then(res => {
           if (res.data.status === 200){
             localStorage.removeItem('auth_token');
-            localStorage.removeItem('auth_name');
+            localStorage.removeItem('user_id');
             // swal("Success", res.data.message, "success");
             history.push('/signin');
           }
@@ -23,6 +23,9 @@ const Sidebar = () => {
                 <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="/userprofile/changepassword">Change Password</Link>
                 <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="/userprofile/cardinfo">
                     Card Info
+                </Link>
+                <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="#">
+                    Order Info
                 </Link>
                 <br/>
                 <br/>

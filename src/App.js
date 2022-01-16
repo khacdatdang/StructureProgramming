@@ -10,8 +10,9 @@ import axios from 'axios';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import UserProfile from './components/UserProfile/UserProfile';
 import Profile from './components/UserProfile/Profile';
+
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://localhost:8000/";
+axios.defaults.baseURL = "https://module-user-ltct.herokuapp.com/";
 axios.defaults.headers.post['Accept'] = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.interceptors.request.use(function (config){
@@ -28,7 +29,6 @@ function App() {
         <Switch>
           <Route path='/' exact component={homepage} />
           <Route path='/signin' exact component={signin} />
-          <Route path='/signin_enterprise' exact component={signin_enterprise} />
           <Route path='/signup' exact component={signup} />
           <Route path='/userprofile' name = "UserProfile" component={UserProfile} />
         </Switch>

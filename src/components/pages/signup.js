@@ -6,12 +6,11 @@ import { useHistory } from 'react-router';
 const Register = () => {
   const history = useHistory();
   const [registerInput, setRegister] = useState({
-    name : '',
+    username : '',
     email : '',
-    tel : '',
-    password : '',
-    address: '',
-    error_list : []
+    password :'',
+    phone : '',
+    password_confirmation : '',
   })
 
   const handleInput = (e) => {
@@ -22,30 +21,20 @@ const Register = () => {
   const registerSubmit = e => {
     e.preventDefault()
   
-    const data = {
-      name : registerInput.name,
-      email : registerInput.email,
-      tel : registerInput.tel,
-      password : registerInput.password,
-      address : registerInput.address
-    }
     axios.get('/sanctum/csrf-cookie').then(response => {
-      axios.post(`/api/register`,data).then(res => {
-        if (res.data.status === 200){
+      axios.post(`/api/register`,registerInput).then(res => {
+        if (res.data.status === 201){
             localStorage.setItem('auth_token', res.data.token)
-            localStorage.setItem('auth_name', res.data.username)
+            localStorage.setItem('user_id', res.data.user.id)
             swal("Success", res.data.message, "success")
             history.push('/signin')
         }
-        else {
-            setRegister({...registerInput, error_list : res.data.validation_errors})
-            console.log(registerInput);
-        }
+      }).catch(err => {
+        swal("Error", "Sign up fail", "error")
       })
     });
     
 
-    
 }
   return (
     <div className="wrapper">
@@ -54,12 +43,12 @@ const Register = () => {
         <input
           className="textInput"
           type=""
-          name="name"
-          placeholder="Name"
-          value = {registerInput.name}
+          name="username"
+          placeholder="UserName"
+          value = {registerInput.username}
           onChange={handleInput}
         />
-        <span> {registerInput.error_list.name} </span>
+        {/* <span> {registerInput.error_list.name} </span> */}
       
 
         <input
@@ -70,27 +59,18 @@ const Register = () => {
           value = {registerInput.email}
           onChange={handleInput}
         />
-        <span> {registerInput.error_list.email} </span>
+        {/* <span> {registerInput.error_list.email} </span> */}
 
         <input
           className="textInput"
-          type="tel"
-          name="tel"
+          type="text"
+          name="phone"
           placeholder="Phone Number"
-          value = {registerInput.tel}
+          value = {registerInput.phone}
           onChange={handleInput}
         />
-        <span> {registerInput.error_list.tel} </span>
+        {/* <span> {registerInput.error_list.tel} </span> */}
 
-        <input
-          className="textInput"
-          type="address"
-          name="address"
-          placeholder="Address"
-          value = {registerInput.address}
-          onChange={handleInput}
-        />
-        <span> {registerInput.error_list.address} </span>
 
         <input
           className="textInput"
@@ -100,7 +80,17 @@ const Register = () => {
           value = {registerInput.password}
           onChange={handleInput}
         />
-        <span> {registerInput.error_list.password} </span>
+        {/* <span> {registerInput.error_list.password} </span> */}
+
+        <input
+          className="textInput"
+          type="password"
+          name="password_confirmation"
+          placeholder = "Password"
+          value = {registerInput.password_confirmation}
+          onChange={handleInput}
+        />
+        {/* <span> {registerInput.error_list.password} </span> */}
           
         <button type ="submit"
         >
