@@ -12,7 +12,7 @@ import UserProfile from './components/UserProfile/UserProfile';
 import Profile from './components/UserProfile/Profile';
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "https://module-user-ltct.herokuapp.com/";
+axios.defaults.baseURL = "https://ltct-customer.herokuapp.com/";
 axios.defaults.headers.post['Accept'] = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.interceptors.request.use(function (config){

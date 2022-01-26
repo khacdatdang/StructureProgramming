@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import swal from 'sweetalert';
 import './signin.css';
+import Navbar from '../HomePage/Navbar';
 import { useHistory } from 'react-router';
 const Register = () => {
   const history = useHistory();
@@ -21,22 +22,23 @@ const Register = () => {
   const registerSubmit = e => {
     e.preventDefault()
   
-    axios.get('/sanctum/csrf-cookie').then(response => {
+    // axios.get('/sanctum/csrf-cookie').then(response => {
       axios.post(`/api/register`,registerInput).then(res => {
-        if (res.data.status === 201){
+        console.log(res.data.status);
+        if (res.data.status == 201){
             localStorage.setItem('auth_token', res.data.token)
-            localStorage.setItem('user_id', res.data.user.id)
+            localStorage.setItem('user_id', res.data.id)
             swal("Success", res.data.message, "success")
             history.push('/signin')
         }
-      }).catch(err => {
-        swal("Error", "Sign up fail", "error")
-      })
+      // })
     });
     
 
 }
   return (
+  <>
+    <Navbar/>
     <div className="wrapper">
       <h2 className="registerTitle">Sign Up</h2>
       <form className="registerForm" onSubmit = {registerSubmit}>
@@ -98,6 +100,8 @@ const Register = () => {
         </button>
       </form>
     </div>
+  </>
+   
   );
 };
 

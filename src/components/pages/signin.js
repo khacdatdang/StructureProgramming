@@ -2,6 +2,7 @@ import React from 'react';
 import './signin.css';
 import { Link } from "react-router-dom";
 import { Button } from '../Layouts/Button';
+import Navbar from '../HomePage/Navbar';
 import {useState} from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -41,6 +42,8 @@ const LogIn = () => {
       })
     }
   return (
+    <>
+    <Navbar/>
     <div className="wrapper">
       <h2 className="registerTitle">Sign In</h2>
       <form className="registerForm" onSubmit ={loginSubmit}>
@@ -67,6 +70,8 @@ const LogIn = () => {
         </Button>
       </form>
     </div>
+    </>
+    
   );
 };
 
