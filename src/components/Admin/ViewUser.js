@@ -8,8 +8,7 @@ function ViewUser() {
     const [loading, setLoading] = useState(true)
     const [userList, setUserList] = useState([])
     const [userItem, setUserItem] = useState({})
-    const [q, setQ] = useState("")
-    const [searchParam] = useState(["role"])
+
     useEffect(() => {
         axios.get(`api/user`).then(res => {
             if (res.status === 200){
@@ -36,6 +35,18 @@ function ViewUser() {
         if (window.confirm("Are you sure to activate this user")){
            axios.get(`api/user/${id}/active`).then(res => {
                alert("Activate user success")
+               window.location.reload()
+           }).catch(err => {
+               alert("Fail!!!")
+           })
+        }  
+    }
+
+    const deleteUser = (e,id) => {
+        e.preventDefault()
+        if (window.confirm("Are you sure to delete this user")){
+           axios.delete(`api/user/${id}`).then(res => {
+               alert("Delete user success")
                window.location.reload()
            }).catch(err => {
                alert("Fail!!!")
@@ -80,8 +91,14 @@ function ViewUser() {
                             <td>
                             {item.status == "blocked" ?
                             <button type="button" className='btn btn-primary' onClick = {(e) => {activateUser(e,item.id)}} >Unblock</button> :
-                            <button type="button" className='btn btn-danger' onClick = {(e) => {blockUser(e,item.id)}}>Block</button>
+                            <button type="button" className='btn btn-warning' onClick = {(e) => {blockUser(e,item.id)}}>Block</button>
                             }
+                            </td>
+
+                            <td>
+                            
+                            <button type="button" className='btn btn-danger' onClick = {(e) => {deleteUser(e,item.id)}} >Delete </button>
+                            
                             </td>
                             
                             
@@ -109,7 +126,7 @@ function ViewUser() {
                 Email : {userItem.email}
                 <br/>
                 {
-                    userItem.status == "active" && 
+                    userItem.status != "inactive"  && 
                     <>
                         Name : {userItem.name}
                     </>
