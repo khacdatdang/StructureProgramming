@@ -7,27 +7,21 @@ import swal from 'sweetalert'
 function Profile() {
     const [loading, setloading] = useState(true)
     
-    const [userInfo, setUserInfo] = useState({
-        name : '',
-        email : '',
-        phone : '',
-        password : '',
-        address: '',
-        gender :'',
-        birthday : ''
-    })
-    const email = localStorage.getItem('auth_name')
+    const [userInfo, setUserInfo] = useState({})
+    const user_id = localStorage.getItem("user_id")
     useEffect(() => {
-        axios.get(`/api/user_info`).then(res => {
-            if (res.data.status=== 200 ){
-                console.log(res.data.user);
-                setUserInfo(res.data.user)
+        
+        axios.get(`/api/user/${user_id}`).then(res => {
+            if (res.status=== 200 ){
+                console.log(res.data);
+                setUserInfo(res.data.data)
+                console.log(userInfo);
                 setloading(false)
             }
-            else if (res.data.status === 404){
+            else if (res.status === 404){
                 swal("Error", res.data.message, "error")
             }
-            console.log(res.data.user);
+            
         })
     }, [])
 

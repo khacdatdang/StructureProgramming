@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import swal from 'sweetalert';
 import './signin.css';
 import Navbar from '../HomePage/Navbar';
+
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 const Register = () => {
   const history = useHistory();
   const [registerInput, setRegister] = useState({
@@ -12,7 +14,10 @@ const Register = () => {
     password :'',
     phone : '',
     password_confirmation : '',
+    role : 'customer'
   })
+
+  const [errorList, seterrorList] = useState({});
 
   const handleInput = (e) => {
     e.persist()
@@ -31,10 +36,16 @@ const Register = () => {
             swal("Success", res.data.message, "success")
             history.push('/signin')
         }
-      // })
-    });
+        else {
+            console.log("Error");
+            seterrorList(res.data.errors)
+            console.log(res.data);
+        }
+    }).catch(err => {
+      seterrorList(err.response.data.errors);
+    })
+    // });
     
-
 }
   return (
   <>
@@ -46,11 +57,14 @@ const Register = () => {
           className="textInput"
           type=""
           name="username"
-          placeholder="UserName"
+          placeholder="Username"
           value = {registerInput.username}
           onChange={handleInput}
         />
-        {/* <span> {registerInput.error_list.name} </span> */}
+        
+        <small class="text-danger">
+          {errorList.username}
+        </small>    
       
 
         <input
@@ -61,17 +75,21 @@ const Register = () => {
           value = {registerInput.email}
           onChange={handleInput}
         />
-        {/* <span> {registerInput.error_list.email} </span> */}
+         <small class="text-danger">
+          {errorList.email}
+        </small> 
 
         <input
           className="textInput"
           type="text"
           name="phone"
-          placeholder="Phone Number"
+          placeholder="Phone number"
           value = {registerInput.phone}
           onChange={handleInput}
         />
-        {/* <span> {registerInput.error_list.tel} </span> */}
+         <small class="text-danger">
+          {errorList.phone}
+        </small> 
 
 
         <input
@@ -82,7 +100,9 @@ const Register = () => {
           value = {registerInput.password}
           onChange={handleInput}
         />
-        {/* <span> {registerInput.error_list.password} </span> */}
+         <small class="text-danger">
+          {errorList.password}
+        </small> 
 
         <input
           className="textInput"
@@ -92,8 +112,10 @@ const Register = () => {
           value = {registerInput.password_confirmation}
           onChange={handleInput}
         />
-        {/* <span> {registerInput.error_list.password} </span> */}
-          
+         <small class="text-danger">
+          {errorList.password}
+        </small> 
+        <Link to = "/signin"> Have an account</Link>
         <button type ="submit"
         >
           Sign Up

@@ -8,11 +8,10 @@ function HeroSection() {
     return (
     <div  className ="container">
         <div className="hero-container">
-            <h1>Work's Market</h1>
-            <p>Find great talent. Build your business</p>
+            <h1>Fashion Website</h1>
+            <p>Make world more colorful</p>
             <div className="hero-btns">
-            <Link to='/signin_enterprise'><Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large'>FIND TALENT</Button></Link> 
-            <Link to='/signin'><Button className='btns' buttonStyle='btn--primary' buttonSize='btn--large'>FIND WORK</Button></Link> 
+           
             </div>
         </div>
         <div className="hero-image">

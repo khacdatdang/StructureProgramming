@@ -14,6 +14,8 @@ const LogIn = () => {
     password :''
   })
 
+  const [errorList, seterrorList] = useState({});
+
   const handleInput = e => {
     e.persist()
     setLoginInput({...loginInput, [e.target.name] : e.target.value})
@@ -29,15 +31,21 @@ const LogIn = () => {
     axios.get('/sanctum/csrf-cookie').then(response => {
       // Login..
           axios.post('/api/login', data).then(res => {
-              if (res.data.status === 200)
-              {
-                  localStorage.setItem('auth_token', res.data.token);
-                  localStorage.setItem('user_id', res.data.user.id);
-                  swal("Success", res.data.message, "success");
-                  history.push('/userprofile')
-              }
+            if (res.data.status === 200){
+              localStorage.setItem('auth_token', res.data.token);
+              localStorage.setItem('user_id', res.data.data.id);
+              swal("Success", res.data.message, "success");
+              if (res.data.data.role == "admin")
+                history.push('/admin')
+              else 
+                history.push('/userprofile')
+            }
+            else {
+              console.log(res.data.message);
+              seterrorList({...Button,account :res.data.message})
+            }
           }).catch(err => {
-            swal("Fail", "Wrong username or password", "error");
+              seterrorList(err.response.data.errors)
           })
       })
     }
@@ -55,6 +63,9 @@ const LogIn = () => {
           value = {loginInput.username}
           onChange = {handleInput}
         />
+        <small className="text-danger">
+          {errorList.username}
+        </small> 
 
         <input
           className="textInput"
@@ -64,6 +75,14 @@ const LogIn = () => {
           onChange = {handleInput}
           placeholder="Password"
         />
+        <small className="text-danger">
+          {errorList.password}
+        </small> 
+
+        <small className="text-danger">
+          {errorList.account}
+        </small> 
+        <Link to = "/signup"> Create new account</Link>
 
         <Button type ="submit" >
             Continue

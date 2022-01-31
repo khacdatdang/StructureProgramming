@@ -48,7 +48,7 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            FinWork
+            Fashion
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -64,16 +64,7 @@ function Navbar() {
                 About Us
               </Link>
             </li>
-            <li className='nav-item'  onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-              <Link
-                to='/'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Catagory <i className='fas fa-caret-down' />
-              </Link>
-              {dropdown && <Dropdown />}
-            </li>
+           
             <li className=''>
               <Link
                 to='/signin'
@@ -84,17 +75,17 @@ function Navbar() {
               </Link>
             </li>
 
-            <li>
+            <li className=''>
               <Link
                 to='/signup'
-                className='nav-links-mobile'
+                className='nav-links'
                 onClick={closeMobileMenu}
               >
                 Sign Up
               </Link>
             </li>
           </ul>
-          {button && <Link to='/signup'><Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large'>SIGN UP</Button></Link>}
+    
         </div>
       </nav>
     </>

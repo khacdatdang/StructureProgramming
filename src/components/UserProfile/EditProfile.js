@@ -6,6 +6,8 @@ import { useHistory } from 'react-router';
 
 function EditProfile() {
     const history = useHistory()
+    const user_id = localStorage.getItem("user_id")
+
     const [userInfo, setUserInfo] = useState({
         name : '',
         email : '',
@@ -30,13 +32,10 @@ function EditProfile() {
         return [year, month, day].join('-');
     }
     useEffect(() => {
-        axios.get(`/api/user_info`).then(res => {
-            if (res.data.status=== 200 ){
-                console.log(res.data.user);
-                setUserInfo(res.data.user)
-            }
-            else if (res.data.status === 404){
-                swal("Error", res.data.message, "error")
+        axios.get(`/api/user/${user_id}`).then(res => {
+            if (res.status === 200 ){
+                console.log(res.data);
+                setUserInfo(res.data.data)
             }
             console.log(res.data.user);
         })

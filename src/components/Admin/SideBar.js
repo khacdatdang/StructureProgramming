@@ -5,10 +5,8 @@ const Sidebar = () => {
     const history = useHistory()
     const logOutSubmit = (e) => {
         e.preventDefault()
-        const token = localStorage.getItem("auth_token")
-        const data = { tokens : localStorage.getItem("auth_token")}
-        // axios.post(`/api/logout`,data,{headers : {"Authorization" : `Bearer ${token}`}}).then(res => {
-        //   if (res.status === 200){
+        // axios.get(`/api/logout`).then(res => {
+        //   if (res.data.status === 200){
             localStorage.removeItem('auth_token');
             localStorage.removeItem('user_id');
             // swal("Success", res.data.message, "success");
@@ -19,14 +17,15 @@ const Sidebar = () => {
     return (
         // <!-- Sidebar-->
         <div className="border-end bg-white" id="sidebar-wrapper">
-            <div className="sidebar-heading border-bottom bg-light">User Profile</div>
+            <div className="sidebar-heading border-bottom bg-light">Admin Page</div>
             <div className="list-group list-group-flush">
-                <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="/userprofile/viewprofile">Profile</Link>
-                <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="/userprofile/changepassword">Change Password</Link>
+                <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="/admin/viewuser">View User</Link>
+                <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="/admin/changepassword">Change Password</Link>
+                <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="/admin/createaccount">Create Account </Link>
                 {/* <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="/userprofile/cardinfo">
                     Card Info
-                </Link> */}
-                {/* <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="/userprofile/orderinfo">
+                </Link>
+                <Link className="list-group-item list-group-item-action list-group-item-light p-3" to="#">
                     Order Info
                 </Link> */}
                 <br/>
