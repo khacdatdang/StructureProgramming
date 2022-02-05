@@ -8,7 +8,8 @@ function ViewUser() {
     const [loading, setLoading] = useState(true)
     const [userList, setUserList] = useState([])
     const [userItem, setUserItem] = useState({})
-
+    const [searchInput, setsearchInput] = useState({});
+    const [statusInput, setstatusInput] = useState("");
     useEffect(() => {
         axios.get(`api/user`).then(res => {
             if (res.status === 200){
@@ -53,9 +54,86 @@ function ViewUser() {
            })
         }  
     }
+
+    const handleSearchInput = e => {
+        e.persist()
+        setsearchInput({...searchInput,[e.target.name] : e.target.value})
+        console.log(searchInput);
+    }
+
+    const handleStatusInput = e => {
+        e.persist()
+        setstatusInput({...statusInput,[e.target.name] : e.target.value})
+        console.log(statusInput);
+    }
+
+    const searchSubmit = e => {
+        e.preventDefault()
+        const keyword = searchInput;
+        if (keyword == ""){
+            axios.get(`api/user`).then(res => {
+                if (res.status === 200){
+                    console.log(res);
+                    setLoading(false)
+                    setUserList(res.data.data)
+                }
+            })
+        }
+        else {
+            axios.post(`/api/user/search`,searchInput).then(res => {
+                // console.log(res.data.jobs)
+                setLoading(false)  
+            })
+        }
+        
+    }
+
+    const filterSubmit = e => {
+        e.preventDefault()
+        const type = statusInput.status
+        if (type){
+            axios.get(`/api/users/${type}`).then(res => {
+                setUserList(res.data.data)
+                setLoading(false) 
+            })
+        } else {
+            axios.get(`api/user`).then(res => {
+                if (res.status === 200){
+                    console.log(res);
+                    setLoading(false)
+                    setUserList(res.data.data)
+                }
+            })
+        }
+       
+    }
   return (
       <>
         <h2>User List</h2>
+        <form  onSubmit={searchSubmit}>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="">Phone and Name</span>
+                </div>
+                <input type="text" class="form-control" placeholder='name' name = 'name' onChange = {handleSearchInput}/>
+                <input type="text" class="form-control" placeholder='phone'name = 'phone' onChange = {handleSearchInput}/>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+        </form>
+
+        <form onSubmit={filterSubmit}>
+            <select name = "status"class="form-select" aria-label="Default select example" onChange={handleStatusInput}>
+            <option selected>Select type </option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            <option value="blocked">Blocked</option>
+            <option value = "">None</option>
+            </select>
+            <button class="btn btn-outline-success" type="submit">Filter</button>
+
+        </form>
+        
+        
         {
             loading ? 
             <div class="spinner-border" role="status">
@@ -129,6 +207,12 @@ function ViewUser() {
                     userItem.status != "inactive"  && 
                     <>
                         Name : {userItem.name}
+                        <br/>
+                        Address : {userItem.address}
+                        <br/>
+                        Birthday : {userItem.birthday}
+                        <br/>
+                        Gender : {userItem.gender}
                     </>
                     
                 }
