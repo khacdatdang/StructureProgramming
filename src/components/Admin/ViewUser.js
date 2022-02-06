@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import swal from 'sweetalert';
 
 function ViewUser() {
    
@@ -82,6 +83,10 @@ function ViewUser() {
         else {
             axios.post(`/api/user/search`,searchInput).then(res => {
                 // console.log(res.data.jobs)
+                if (res.data.data.length)
+                    setUserList(res.data.data)
+                else 
+                    swal("Error", "Cannot find", "error")
                 setLoading(false)  
             })
         }
@@ -113,7 +118,7 @@ function ViewUser() {
         <form  onSubmit={searchSubmit}>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="">Phone and Name</span>
+                    <span class="input-group-text" id="">Search</span>
                 </div>
                 <input type="text" class="form-control" placeholder='name' name = 'name' onChange = {handleSearchInput}/>
                 <input type="text" class="form-control" placeholder='phone'name = 'phone' onChange = {handleSearchInput}/>
